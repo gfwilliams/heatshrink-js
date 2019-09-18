@@ -1,5 +1,5 @@
 Heatshrink.js
---------------
+=============
 
 An Emscripten port of the [heatshrink compression library](https://github.com/atomicobject/heatshrink) to JS.
 
@@ -15,4 +15,18 @@ git clone https://github.com/atomicobject/heatshrink
 ./build.sh
 ```
 
+Using:
+--------------
 
+
+```
+<script src="http://www.espruino.com/js/heatshrink.js"></script>
+<script>
+var input = new Uint8Array(32);
+// ...
+var compressed = heatshrink_compress(input);
+// compressed is a Uint8Array
+var decompressed = heatshrink_decompress(compressed);
+// decompressed is a Uint8Array
+</script>
+```
