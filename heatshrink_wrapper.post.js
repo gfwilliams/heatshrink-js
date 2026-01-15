@@ -1,10 +1,10 @@
-var HS_LOG_LEVEL = 2;
+var HS_LOG_LEVEL = 0;
 
 function heatshrink_compress(inputBuffer) {
         if (inputBuffer.BYTES_PER_ELEMENT!=1) throw new Error("Expecting Byte Array");
         var input_size = inputBuffer.length;
         var output_size = input_size + (input_size/2) + 4;;
-        
+
         var bufIn = Module._malloc(input_size);
         Module.HEAPU8.set(inputBuffer, bufIn);
         // int compress(uint8_t *input, uint32_t input_size, uint8_t *output, uint32_t output_size, int log_lvl)
@@ -26,7 +26,7 @@ function heatshrink_decompress(inputBuffer) {
         if (inputBuffer.BYTES_PER_ELEMENT!=1) throw new Error("Expecting Byte Array");
         var input_size = inputBuffer.length;
         var output_size = input_size + (input_size/2) + 4;;
-        
+
         var bufIn = Module._malloc(input_size);
         Module.HEAPU8.set(inputBuffer, bufIn);
         // int compress(uint8_t *input, uint32_t input_size, uint8_t *output, uint32_t output_size, int log_lvl)
@@ -43,3 +43,9 @@ function heatshrink_decompress(inputBuffer) {
 
         return outputBuffer;
 }
+
+return {
+  compress : heatshrink_compress,
+  decompress : heatshrink_decompress,
+};
+}));

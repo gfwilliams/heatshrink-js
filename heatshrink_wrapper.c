@@ -30,7 +30,7 @@ int compress(uint8_t *input, uint32_t input_size, uint8_t *output, uint32_t outp
             if (output) {
               pres = heatshrink_encoder_poll(&hse, &output[polled], output_size - polled, &count);
             } else {
-              uint8_t buf[64];              
+              uint8_t buf[256];
               pres = heatshrink_encoder_poll(&hse, buf, sizeof(buf), &count);
             }
             ASSERT(pres >= 0);
