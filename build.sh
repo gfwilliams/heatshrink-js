@@ -4,7 +4,7 @@
 cp heatshrink_config.h heatshrink/heatshrink_config.h
 
 echo Running emscripten
-emcc heatshrink_wrapper.c heatshrink/heatshrink_encoder.c heatshrink/heatshrink_decoder.c -o heatshrink_wrapper.out.js -s EXPORTED_FUNCTIONS='["_compress","_decompress","_malloc","_free"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall"]' -s WASM=0 -Oz
+emcc heatshrink_wrapper.c heatshrink/heatshrink_encoder.c heatshrink/heatshrink_decoder.c -o heatshrink_wrapper.out.js -s EXPORTED_FUNCTIONS='["_compress","_decompress","_malloc","_free"]' -s EXTRA_EXPORTED_RUNTIME_METHODS='["ccall"]' -s WASM=0 -s BINARYEN_ASYNC_COMPILATION=0 -s SINGLE_FILE=1 -Oz
 
 echo Adding extra code
 cat heatshrink_notes.js > heatshrink.js
